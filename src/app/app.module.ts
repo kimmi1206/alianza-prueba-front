@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientsDashboardComponent } from './modules/clients/components/clients-dashboard/clients-dashboard.component';
 import { ErrorComponent } from './shared/errors/components/error/error.component';
@@ -31,6 +32,7 @@ import { CreateClientComponent } from './modules/clients/components/create-clien
     HttpClientModule,
     MatSidenavModule,
     MatTableModule,
+    MatIconModule,
     DialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,

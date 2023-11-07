@@ -1,10 +1,10 @@
 export interface Client {
   id: number;
-  shared_key: string;
-  business_id: string;
+  sharedKey: string;
+  businessId: string;
   phone: number;
   email: string;
-  start_date: string;
-  end_date: string;
-  date_added: string;
+  startDate: string;
+  endDate: string;
+  dataAdded: string;
 }

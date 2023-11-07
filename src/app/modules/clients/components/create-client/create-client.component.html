@@ -1,4 +1,4 @@
-<div class="container-fluid p-3 border border-primary">
+<div class="container-fluid p-3 border border-primary bg-light text-dark">
   <form [formGroup]="form">
     <div class="border border-secondary mb-3">
       <label for="name" class="form-label">Name</label>
@@ -28,14 +28,16 @@
         class="form-control"
         id="phone"
         name="phone"
+        min="1000000000"
         maxlength="10"
         formControlName="phone"
         [ngClass]="{ 'is-invalid': form.get('phone')?.invalid }"
       />
       <div
         *ngIf="
-          form.get('phone')?.hasError('minLength') &&
-          form.get('phone')?.hasError('required') &&
+          (form.get('phone')?.hasError('min') ??
+            form.get('phone')?.hasError('maxLength') ??
+            form.get('phone')?.hasError('required')) &&
           isTouchedOrDirty('phone')
         "
         class="invalid-feedback"
@@ -56,8 +58,8 @@
       />
       <div
         *ngIf="
-          form.get('email')?.hasError('email') &&
-          form.get('email')?.hasError('required') &&
+          (form.get('email')?.hasError('email') ??
+            form.get('email')?.hasError('required')) &&
           isTouchedOrDirty('email')
         "
         class="invalid-feedback"
@@ -105,16 +107,18 @@
         Please select Start Date.
       </div>
     </div>
-    <button
-      type="submit"
-      (click)="saveClient()"
-      class="btn btn-primary"
-      [disabled]="!form.valid"
-    >
-      OK
-    </button>
-    <div *ngIf="!form.valid" class="invalid-feedback">
-      Please Fill the Form.
+    <div class="container d-flex flex-column">
+      <button
+        type="submit"
+        (click)="saveClient()"
+        class="btn btn-primary"
+        [disabled]="!form.valid"
+      >
+        OK
+      </button>
+      <div *ngIf="!form.valid" class="invalid-feedback">
+        Please Fill the Form.
+      </div>
     </div>
   </form>
 </div>

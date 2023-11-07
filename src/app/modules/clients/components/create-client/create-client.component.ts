@@ -24,7 +24,7 @@ export class CreateClientComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.min(1000000000),
           Validators.maxLength(10),
         ],
       ],
