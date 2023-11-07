@@ -8,12 +8,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientsDashboardComponent } from './modules/clients/components/clients-dashboard/clients-dashboard.component';
 import { ErrorComponent } from './shared/errors/components/error/error.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, ClientsDashboardComponent, ErrorComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    ClientsDashboardComponent,
+    ErrorComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -21,6 +27,7 @@ import { ErrorComponent } from './shared/errors/components/error/error.component
     CommonModule,
     HttpClientModule,
     MatSidenavModule,
+    MatTableModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
