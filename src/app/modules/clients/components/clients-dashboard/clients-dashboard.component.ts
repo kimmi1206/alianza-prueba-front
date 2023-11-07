@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Client } from 'src/app/model/client';
+import { Dialog } from '@angular/cdk/dialog';
+import { CreateClientComponent } from '../create-client/create-client.component';
 
 @Component({
   selector: 'app-clients-dashboard',
@@ -16,11 +18,20 @@ export class ClientsDashboardComponent implements OnInit {
     'data_added',
     'edit',
   ];
+
   dataSource: MatTableDataSource<Client> = new MatTableDataSource();
 
-  constructor() {}
+  constructor(public dialog: Dialog) {}
 
   ngOnInit(): void {
     console.log('Clients Dashboard');
+  }
+
+  openDialog(): void {
+    this.dialog.open(CreateClientComponent);
+  }
+
+  exportCsv(): void {
+    console.log('Exports o Csv');
   }
 }

@@ -1,0 +1,120 @@
+<div class="container-fluid p-3 border border-primary">
+  <form [formGroup]="form">
+    <div class="border border-secondary mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        maxlength="20"
+        required
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': form.get('name')?.invalid }"
+      />
+      <div
+        *ngIf="
+          form.get('name')?.hasError('required') && isTouchedOrDirty('name')
+        "
+        class="invalid-feedback"
+      >
+        Please enter your name.
+      </div>
+    </div>
+    <div class="border border-secondary mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input
+        type="number"
+        class="form-control"
+        id="phone"
+        name="phone"
+        maxlength="10"
+        formControlName="phone"
+        [ngClass]="{ 'is-invalid': form.get('phone')?.invalid }"
+      />
+      <div
+        *ngIf="
+          form.get('phone')?.hasError('minLength') &&
+          form.get('phone')?.hasError('required') &&
+          isTouchedOrDirty('phone')
+        "
+        class="invalid-feedback"
+      >
+        Please enter your phone number (10 digits).
+      </div>
+    </div>
+    <div class="border border-secondary mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        maxlength="100"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': form.get('email')?.invalid }"
+      />
+      <div
+        *ngIf="
+          form.get('email')?.hasError('email') &&
+          form.get('email')?.hasError('required') &&
+          isTouchedOrDirty('email')
+        "
+        class="invalid-feedback"
+      >
+        Please enter your Email.
+      </div>
+    </div>
+    <div class="border border-secondary-subtle mb-3">
+      <label for="startdate" class="form-label">Start date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="startdate"
+        name="startdate"
+        formControlName="startdate"
+        [ngClass]="{ 'is-invalid': form.get('startdate')?.invalid }"
+      />
+      <div
+        *ngIf="
+          form.get('startdate')?.hasError('required') &&
+          isTouchedOrDirty('startdate')
+        "
+        class="invalid-feedback"
+      >
+        Please select Start Date.
+      </div>
+    </div>
+    <div class="border border-secondary mb-3">
+      <label for="enddate" class="form-label">End date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="enddate"
+        name="enddate"
+        formControlName="enddate"
+        [ngClass]="{ 'is-invalid': form.get('enddate')?.invalid }"
+      />
+      <div
+        *ngIf="
+          form.get('enddate')?.hasError('required') &&
+          isTouchedOrDirty('enddate')
+        "
+        class="invalid-feedback"
+      >
+        Please select Start Date.
+      </div>
+    </div>
+    <button
+      type="submit"
+      (click)="saveClient()"
+      class="btn btn-primary"
+      [disabled]="!form.valid"
+    >
+      OK
+    </button>
+    <div *ngIf="!form.valid" class="invalid-feedback">
+      Please Fill the Form.
+    </div>
+  </form>
+</div>

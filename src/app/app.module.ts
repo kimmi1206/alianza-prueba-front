@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogModule } from '@angular/cdk/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientsDashboardComponent } from './modules/clients/components/clients-dashboard/clients-dashboard.component';
 import { ErrorComponent } from './shared/errors/components/error/error.component';
+import { CreateClientComponent } from './modules/clients/components/create-client/create-client.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { ErrorComponent } from './shared/errors/components/error/error.component
     SidebarComponent,
     ClientsDashboardComponent,
     ErrorComponent,
+    CreateClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { ErrorComponent } from './shared/errors/components/error/error.component
     HttpClientModule,
     MatSidenavModule,
     MatTableModule,
+    DialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
