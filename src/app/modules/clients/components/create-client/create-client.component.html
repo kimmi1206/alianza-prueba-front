@@ -28,16 +28,14 @@
         class="form-control"
         id="phone"
         name="phone"
-        min="1000000000"
-        maxlength="10"
         formControlName="phone"
         [ngClass]="{ 'is-invalid': form.get('phone')?.invalid }"
       />
       <div
         *ngIf="
-          (form.get('phone')?.hasError('min') ??
-            form.get('phone')?.hasError('maxLength') ??
-            form.get('phone')?.hasError('required')) &&
+          ((form.get('phone')?.hasError('required') ??
+            form.get('phone')?.hasError('max')) ||
+            form.get('phone')?.hasError('min')) &&
           isTouchedOrDirty('phone')
         "
         class="invalid-feedback"

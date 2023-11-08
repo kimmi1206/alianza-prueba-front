@@ -12,13 +12,14 @@ import { ClientService } from '../../services/client.service';
 })
 export class ClientsDashboardComponent implements OnInit {
   inputKeyword: string = '';
+  clientSearch?: Client;
 
   displayedColumns: string[] = [
     'sharedKey',
     'businessId',
     'email',
     'phone',
-    'dataAdded',
+    'dateAdded',
     'edit',
   ];
 
@@ -47,6 +48,17 @@ export class ClientsDashboardComponent implements OnInit {
           .toLowerCase()
           .includes(this.inputKeyword.toLowerCase())
       );
+    }
+  }
+
+  getBySharedKey() {
+    if (this.inputKeyword.trim()) {
+      this.clientService
+        .getBySharedKey(this.inputKeyword)
+        .subscribe((response: any) => {
+          if (response) this.clientSearch = response;
+          console.log(response);
+        });
     }
   }
 

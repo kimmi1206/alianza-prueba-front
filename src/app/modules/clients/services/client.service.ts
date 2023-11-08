@@ -15,4 +15,14 @@ export class ClientService {
   getData(): Observable<Object> {
     return this.http.get(`${this.apiUrl}/api/clients/all`);
   }
+
+  getBySharedKey(sharedKey: string): Observable<Object> {
+    return this.http.get(
+      `${this.apiUrl}/api/clients/find-sharedkey?sharedKey=${sharedKey}`
+    );
+  }
+
+  saveClient(client: Client) {
+    return this.http.post(`${this.apiUrl}/api/clients/new`, client);
+  }
 }

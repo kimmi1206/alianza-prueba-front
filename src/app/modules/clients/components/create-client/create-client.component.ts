@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
+import { Client } from 'src/app/model/client';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-create-client',
@@ -10,7 +12,11 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class CreateClientComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: DialogRef) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: DialogRef,
+    private clientService: ClientService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -25,6 +31,7 @@ export class CreateClientComponent implements OnInit {
         [
           Validators.required,
           Validators.min(1000000000),
+          Validators.max(9999999999),
           Validators.maxLength(10),
         ],
       ],
@@ -62,6 +69,26 @@ export class CreateClientComponent implements OnInit {
   }
 
   saveClient(): void {
+    this.clientService
+      .saveClient(this.buildRequestBody())
+      .subscribe((response: any) => {
+        if (response) console.log(response);
+      });
     this.dialogRef.close();
+  }
+
+  buildRequestBody(): Client {
+    let clientObject = new Client();
+
+    clientObject.email = this.form.controls['email'].value;
+    clientObject.sharedKey = clientObject.email.split('@')[0].substring(0, 10);
+    clientObject.businessId = this.form.controls['name'].value.substring(0, 10);
+    clientObject.phone = this.form.controls['phone'].value;
+    clientObject.startDate = this.form.controls['startdate'].value;
+    clientObject.endDate = this.form.controls['enddate'].value;
+    clientObject.dateAdded = new Date(Date.now()).toISOString().split('T')[0];
+
+    console.log(clientObject);
+    return clientObject;
   }
 }
