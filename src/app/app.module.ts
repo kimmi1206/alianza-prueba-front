@@ -12,18 +12,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClientsDashboardComponent } from './modules/clients/components/clients-dashboard/clients-dashboard.component';
 import { ErrorComponent } from './shared/errors/components/error/error.component';
-import { CreateClientComponent } from './modules/clients/components/create-client/create-client.component';
+import { ClientsModule } from './modules/clients/clients.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidebarComponent,
-    ClientsDashboardComponent,
-    ErrorComponent,
-    CreateClientComponent,
-  ],
+  declarations: [AppComponent, SidebarComponent, ErrorComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -31,10 +24,9 @@ import { CreateClientComponent } from './modules/clients/components/create-clien
     CommonModule,
     HttpClientModule,
     MatSidenavModule,
-    MatTableModule,
-    MatIconModule,
     DialogModule,
     AppRoutingModule,
+    ClientsModule,
     BrowserAnimationsModule,
   ],
   providers: [],
